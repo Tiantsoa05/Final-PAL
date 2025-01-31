@@ -16,8 +16,9 @@ const StudDashboard = () => {
     const [numberCourses, setNumberCourses] = useState(0);
     const [langue, setLangue] = useState({});
     const { userName, idLangue } = localStorage;
-
-    const [badgeObtained, setBadgeObtained] = useState(false);
+    const [badgeObtained, setBadgeObtained] = useState(false)
+    const [evaluation,setEvaluation] = useState([])
+    const prof = localStorage.getItem('prof')
 
     useEffect(() => {
         // Vérification du badge dans localStorage
@@ -26,11 +27,20 @@ const StudDashboard = () => {
             setBadgeObtained(true);
         }
 
-        axios.get('http://localhost:3000/courses/number/1')
+        console.log({prof})
+        axios.get('http://localhost:3000/courses/number/'+prof)
             .then(res => {
                 setNumberCourses(res.data.numberCourses);
-            });
-        
+            }).catch(console.log)
+
+        axios.get('http://localhost:3000/exam/subject/'+prof)
+        .then(res => {
+            setEvaluation(res.data)
+        }).catch(error=>{
+            console.log(error)
+            setEvaluation([])
+        })
+
         axios.get('http://localhost:3000/all/lang')
             .then(res => {
                 LANGUAGES.map(l => {
@@ -74,7 +84,7 @@ const StudDashboard = () => {
                     
                 </div>
             </div>
-            <Sidebar />
+            <Sidebar evaluation={evaluation} />
         </div>
     );
 };

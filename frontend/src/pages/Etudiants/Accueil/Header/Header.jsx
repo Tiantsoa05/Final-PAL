@@ -124,8 +124,8 @@ export const Header = () => {
                 />
               </div>
             </Link>
-              <span className="absolute top-1/2 right-0 -translate-y-1/2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-              7</span>
+              {/* <span className="absolute top-1/2 right-0 -translate-y-1/2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+              7</span> */}
           </div>
         }
       

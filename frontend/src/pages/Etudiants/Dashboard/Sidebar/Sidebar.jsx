@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { BiLogoMessenger } from "react-icons/bi";
 import { useState } from "react";
 
-const Sidebar = () => {
+const Sidebar = ({evaluation}) => {
+  console.log(evaluation)
     const navigate = useNavigate()
     const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
     const closeLogoutModal = () => {
@@ -41,13 +42,16 @@ const Sidebar = () => {
           <BiLogoMessenger size={20} />
           <span>Messages</span>
         </li>
-        <li 
+        {
+          evaluation.allExam.length > 0 && 
+          <li 
             className="flex items-center gap-3 cursor-pointer p-2 hover:bg-gray-100 rounded-lg"
             onClick={()=>navigate('/evaluation')}
-        >
-          <BookCheck size={20} />
-          <span>Evaluation</span>
-        </li>
+          >
+            <BookCheck size={20} />
+            <span>Evaluation</span>
+          </li>
+        }
         <li 
             className="flex items-center gap-3 cursor-pointer p-2 hover:bg-gray-100 rounded-lg"
             onClick={()=>setIsLogoutModalOpen(true)}
