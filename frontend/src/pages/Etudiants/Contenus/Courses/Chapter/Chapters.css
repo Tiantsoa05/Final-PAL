@@ -1,0 +1,60 @@
+.screen-chapters{
+    display: flex;
+    align-items: start;
+    margin-top: 35px;
+    gap: 2vw;
+}
+.chapter-titles{
+    /* background-color: red; */
+    min-width: 25vw;
+    height: 76.5vh;
+    padding: 8px 12px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.chapter-titles h5{
+    color: rgb(0, 0, 0);
+    text-align: start;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.chapter-titles h5:hover{
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+.chapter-content{
+    /* background-color: green; */
+    width: calc(100vw - 29vw);
+    height: 76.5vh;
+    padding: 12px 30px;
+    position: relative;
+    overflow-y: scroll;
+}
+.chapter-paraph{
+    font-size: 16px;
+    line-height: 25px;
+}
+.chapter-title{
+    text-align: center;
+    font-weight: bold;
+}
+.chapter-image{
+    width: calc(100% - 10px);
+    height: 58vh;
+    margin-top: 4vh;
+}
+.chapter-buttons{
+    position: absolute;
+    width: calc(100% - 70px);
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 4vw;
+    padding: 15px 18px;
+}
+.chapter-buttons .btn{
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+}

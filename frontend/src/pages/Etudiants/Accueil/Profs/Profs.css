@@ -1,0 +1,43 @@
+.liste-profs > div{
+    font-size: 12px;
+}
+.liste-profs{
+    background-color: white;
+    width: 24vw;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border-radius: 12px;
+    height: 75vh;
+    padding: 20px;
+    /* overflow-y: scroll; */
+    margin-left: 3vw;
+}
+.card-prof-profile{
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    width: 21vw;
+    height: 15vh;
+    border-radius: 8px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.card-prof-profile:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+/* .card-prof{ */
+/* } */
+.image-prof{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.description{
+    margin-left: 5vw;
+    margin-top: -8px;
+    font-style: italic;
+}
+
+/* Description */
+.details{
+    width: 40vw;
+}

@@ -1,0 +1,128 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Langue {
+  id_langue       Int      @id @default(autoincrement())
+  nom_langue  String
+  professeurs  Professeur[]
+  Cours        Cours[]
+  Dictionnaire Dictionnaire[]
+}
+
+model Professeur {
+  id_prof         Int      @id @default(autoincrement())
+  nom_prof        String
+  prenom_prof     String
+  mail_prof       String
+  mdp_prof        String
+  Diplome         String
+  num_phone       String?
+  id_langue       Int
+  langue          Langue    @relation(fields: [id_langue], references: [id_langue])
+  cours           Cours[]
+  payment         PayerDroit[]
+  Discuter        Discuter[]
+  Etudiant        Etudiant[]
+  ProgrammeAgenda ProgrammeAgenda[]
+  Examen          Examen[]
+}
+
+model Niveau{
+  id_niveau          Int      @id @default(autoincrement())
+  valeur_niveau  String
+  etudiant        Etudiant[]
+}
+
+model Cours {
+  id              Int      @id @default(autoincrement())
+  titre           String
+  contenu_cours   String
+  id_langue       Int
+  langue          Langue   @relation(fields: [id_langue], references: [id_langue])
+  id_professeur   Int
+  professeur      Professeur   @relation(fields: [id_professeur], references: [id_prof])
+}
+
+model Etudiant {
+  id_etudiant     Int      @id @default(autoincrement())
+  nom_etudiant    String
+  prenom_etudiant String
+  e_mail          String @unique
+  Date_Naissance  DateTime
+  mdp       String
+  id_prof        Int?
+  professeur      Professeur? @relation(fields: [id_prof], references: [id_prof])
+  id_niveau       Int?
+  niveau          Niveau?      @relation(fields: [id_niveau], references: [id_niveau])
+  payment        PayerDroit[]
+  discuter        Discuter[]  
+}
+
+model PayerDroit {
+  id             Int       @id @default(autoincrement())
+  montant        Float    
+  date           DateTime  @default(now())  
+  duree_cours    Int
+  id_etudiant    Int       
+  etudiant       Etudiant  @relation(fields: [id_etudiant], references: [id_etudiant])
+  id_professeur  Int      
+  professeur      Professeur @relation(fields: [id_professeur], references: [id_prof])
+}
+model Discuter{
+  id_messages Int @id @default(autoincrement())
+  message     String
+  heure_envoi DateTime @default(now())
+  send_type   Int 
+  id_prof     Int
+  professeur  Professeur @relation(fields: [id_prof], references: [id_prof])
+  id_etudiant Int
+  etudiant    Etudiant @relation(fields: [id_etudiant], references: [id_etudiant])
+}
+model Dictionnaire {
+  id_dictionnaire Int @id @default(autoincrement())
+  mot            String
+  definition  String
+  synonyme    String
+  id_langue        Int
+  langue         Langue @relation(fields: [id_langue], references: [id_langue])
+}
+
+model Exercice {
+  id_exercice Int @id @default(autoincrement())
+  titre_exercice String
+  contenu_exercice String
+}
+
+model Chapitre {
+  id_chapitre Int @id @default(autoincrement())
+}
+
+model Examen {
+  id_examen Int @id @default(autoincrement())
+  question_examen String
+  option_reponse  String
+  reponse_examen String
+  point_examen  Int
+  id_prof       Int
+  professeur    Professeur @relation(fields: [id_prof],references: [id_prof])
+}
+
+model ProgrammeAgenda{
+  id_prog  Int @id @default(autoincrement())
+  tache  String
+  id_prof Int
+  date_tache DateTime
+  professeur  Professeur @relation(fields: [id_prof], references: [id_prof])
+}

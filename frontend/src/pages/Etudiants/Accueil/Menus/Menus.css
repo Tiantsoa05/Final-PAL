@@ -1,0 +1,15 @@
+.menus{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 90%;
+    align-items: center;
+    border-radius: 8px;
+}
+.btn-lesson, .btn-exo{
+    background-color: rgb(31, 136, 31);
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
